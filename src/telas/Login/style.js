@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
         height: "auto",
-        padding: 10
+        padding: 10,
+        backgroundColor: "#E7EAEA"
     },
     whiteSpace: {
         justifyContent: "center",
@@ -25,6 +26,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 60,
         borderRadius: 10,
         // backgroundColor: "#E6E8E8"
+        
     },
     logo:{
         height: 200,
@@ -42,7 +44,8 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         elevation: 3,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "white"
     },
     label:{
         color: "gray",

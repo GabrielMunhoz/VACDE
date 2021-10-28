@@ -7,19 +7,15 @@ export const styles = StyleSheet.create({
       backgroundColor: "#E7EAEA",
       alignItems: 'center',
       justifyContent: 'center',
-      padding: 10
     },
     whiteSpace: {
         height: "auto",
         width: "100%",
         backgroundColor: "#fff",
-        alignItems: "center"
-    },
-    logo:{
-        height: 200,
-        width: 200,
-        marginTop: 10,
-        marginBottom: 10
+        justifyContent: "flex-start",
+        paddingLeft: 30,
+        paddingBottom: 7,
+        paddingTop: 20
     },
     mainContent:{
         flexDirection: "column",
@@ -40,50 +36,46 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         marginBottom: 10
     },
+    updateData:{
+        marginTop: 20,
+        color: "gray",
+        fontSize: 18,
+        fontWeight: "bold"
+    },
+    lembrete:{
+        marginTop: 370,
+        fontSize: 15,
+        color: "gray",
+        fontWeight: "bold",
+        width: 200
+    },
     icon:{
         color: "gray",
         height: 20,
         width: 20
     },
-    inputRow:{
-        flexDirection: "row"
+    voltar:{
+        width: 40,
+        height: 40
     },
-    btnSecondary:{
-        width: 145,
-        marginRight: 10
-    },
-    flexRow:{
-        flexDirection: "row",
-        width: "100%",
-        justifyContent: "space-evenly"
-    },
-    btnIcon:{
-        width: 30,
-        height: 30,
-        borderRadius: 50
-    },
-    icon: {
-        width: 30,
-        height: 30
-    },
-    data:{
+    upload:{
         color: "gray",
-        fontSize: 30
+        width: 200,
+        fontSize: 13
     },
-    welcome:{
-        fontSize: 30,
-        marginTop: 50
-    },
-    qrcode:{
-        width: 270,
-        height: 60,
-        backgroundColor: "#36C1AA",
+    botaoAtualizar:{
+        width: 55,
+        backgroundColor: "#4DC1C1",
+        borderRadius: 25,
+        border: "none",
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 20
+        height: 50
     },
-    qrcodetext:{
-        color: "white",
-        fontSize: 20
+    uploadimg:{
+        width: 20,
+        height: 20
     }
   });

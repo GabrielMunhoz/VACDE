@@ -16,7 +16,7 @@ export default function Home({navigation}){
                             <Image style={styles.icon}  source={require('../../../assets/img/logout-icon.jpeg')} />
                         </TouchableOpacity>
                         <Text style={styles.data} >Seus Dados</Text>
-                        <TouchableOpacity style={styles.btnIcon} >
+                        <TouchableOpacity style={styles.btnIcon} onPress={()=> navigation.navigate("AtualizarCadastro")}>
                             <Image style={styles.icon} source={require('../../../assets/img/configuration-icon.jpeg')} />
                         </TouchableOpacity>
                     </View>

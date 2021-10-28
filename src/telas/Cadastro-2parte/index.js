@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { styles } from './style';
 
-export default function App() {
+export default function Cadastro_2parte({navigation}) {
 
   const [cpf, setData] = useState('');
   const [email, setCpf] = useState('');
@@ -13,15 +14,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <TouchableOpacity style={{marginRight:'80%'}}>
-        <Image style={{width:50, height:50}} source={require('./assets/voltar.jpg')} />
+      <TouchableOpacity style={{marginRight:'80%'}} onPress={()=>navigation.navigate("Cadastro")}>
+        <Image style={{width:50, height:50}} source={require('../../../assets/img/voltar.jpg')} />
       </TouchableOpacity>
 
       <Text style={styles.textConectsus}>Para continuar, entre no seu ConecteSUS</Text>
       <nav>
         <Text style={styles.textBaixar}>Faça o upload de sua{"\n"}Carteira de Vacinação Digital</Text>        
         <TouchableOpacity style={styles.btnBaixar}>
-          <Image style={{width:50,height:50}} source={require('./assets/botaobaixar.jpg')} />
+          <Image style={{width:50,height:50}} source={require('../../../assets/img/botaobaixar.jpg')} />
         </TouchableOpacity>
       </nav>
 
@@ -39,63 +40,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FAFAFA',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:20
-  },
-
-  textInput:{
-    width:'90%',
-    height:50,
-    borderWidth: 2,
-    borderColor:'gray',
-    backgroundColor:'white',
-    borderRadius:100,
-    paddingLeft:10,
-    marginTop:-15,
-    marginBottom:30  
-  },
-
-  btnCadastrar:{
-    width:'65%',
-    height:70,
-    backgroundColor: '#5DB7E3',
-    borderRadius:100,
-    justifyContent:'center'
-    
-  },
-
-  textConectsus:{
-    fontWeight: "solid",
-    paddingTop:15,
-    paddingLeft:12,
-    marginBottom:40,
-    fontSize:25,
-    marginTop:5,
-    color: '#808080',
-
-  },
-
-btnBaixar:{
-  marginLeft:'80%',
-  marginTop:'-15%',
-  marginBottom:'15%'
-
-
-},
-
-textBaixar:{
-  paddingTop:15,
-  fontSize:15,
-  marginTop:5,
-  color: '#808080',
-  paddingRight:100,
-
-},
-
-});
