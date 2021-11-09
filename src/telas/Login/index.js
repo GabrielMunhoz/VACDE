@@ -2,8 +2,26 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import {styles} from './style';
+import api from '../../Services/api';
 
 export default function App({navigation}) {
+
+  const [email, setEmail] = React.useState("");
+  const [senha, setSenha] = React.useState("");
+  const [logado, setLogado] = React.useState(0);
+
+  const Login = async () =>{
+
+    try{
+      const response = await api.post("/usuario/login", {nome: email, senha});
+      setLogado(1);
+      navigation.navigate("Home");
+      console.log(response)
+    }catch(error){
+      setLogado(2);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.whiteSpace} >
@@ -12,10 +30,11 @@ export default function App({navigation}) {
       </View>
       <View style={styles.mainContent} >
         <Text style={styles.label} >CPF/Email</Text>
-        <TextInput multiline={true} style={styles.input} />
+        <TextInput onChangeText={text=>setEmail(text)} multiline={true} style={styles.input} />
         <Text style={styles.label} >Senha</Text>
-        <TextInput style={styles.input} />
-        <TouchableOpacity style={styles.btnEntry} onPress={()=> navigation.navigate("Home") } >
+        <TextInput onChangeText={text=>setSenha(text)} style={styles.input} />
+        {logado === 2 &&<Text style={[styles.label, {color: "red", marginTop: 10}]} >Email ou Senha incorretos.</Text>}
+        <TouchableOpacity style={styles.btnEntry} onPress={Login} >
           <Text style={styles.btnEntryText} >Entrar</Text>
         </TouchableOpacity>
       </View>
