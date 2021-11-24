@@ -13,7 +13,7 @@ export default function App({navigation}) {
   const Login = async () =>{
 
     try{
-      const response = await api.post("/usuario/login", {nome: email, senha});
+      const response = await api.post("/usuario/login", {email, senha});
       setLogado(1);
       navigation.navigate("Home");
       console.log(response)

@@ -11,7 +11,7 @@ export default function TelaDadosAprovados() {
       <Text style={styles.usuario}>Usuário</Text>
       <Text style={styles.recebeNome}>(Nome do Usuário)</Text>          
 
-      <Image style={{width:165,height:165}} source={require('.../../../assets/img/aprovado.jpg')} />
+      <Image style={{width:165,height:165}} source={require('../../../assets/img/aprovado.jpg')} />
 
       <Text style={styles.textAprovado}>Dados Recusados</Text>
 

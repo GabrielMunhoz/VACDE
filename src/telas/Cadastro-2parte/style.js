@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     },
   
     textConectsus:{
-      fontWeight: "solid",
+      fontWeight: "normal",
       paddingTop:15,
       paddingLeft:12,
       marginBottom:40,
