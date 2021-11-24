@@ -34,13 +34,19 @@ export default function App({navigation}) {
         <Text style={styles.label} >Senha</Text>
         <TextInput onChangeText={text=>setSenha(text)} style={styles.input} />
         {logado === 2 &&<Text style={[styles.label, {color: "red", marginTop: 10}]} >Email ou Senha incorretos.</Text>}
-        <TouchableOpacity style={styles.btnEntry} onPress={Login} >
+        {/* <TouchableOpacity style={styles.btnEntry} onPress={Login} >
+          <Text style={styles.btnEntryText} >Entrar</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity style={styles.btnEntry} onPress={()=>navigation.navigate("Home")} >
           <Text style={styles.btnEntryText} >Entrar</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.whiteSpace} >
         <TouchableOpacity style={styles.btnNew} onPress={()=> navigation.navigate("Cadastro") } >
           <Text style={styles.btnNewText} >Sou Novo Por Aqui</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnNew} onPress={()=> navigation.navigate("TelaQRCode") } >
+          <Text style={styles.btnNewText} >Ler QR Code</Text>
         </TouchableOpacity>
       </View>
     </View>

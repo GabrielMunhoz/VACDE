@@ -33,7 +33,7 @@ export default function Home({navigation}){
                         <TextInput style={[styles.btnPrimary, styles.btnSecondary, {marginLeft: 7}]} left={<TextInput.Icon color="gray" name="bottle-tonic-plus-outline" />} right={<TextInput.Icon color="gray" name="plus-circle-outline" />}/>
                         <TextInput style={[styles.btnPrimary, styles.btnSecondary]} left={<TextInput.Icon color="gray" name="bottle-tonic-plus-outline" />} right={<TextInput.Icon color="gray" name="plus-circle-outline" />}/>
                     </View>
-                    <TouchableOpacity style={styles.qrcode} >
+                    <TouchableOpacity style={styles.qrcode} onPress={()=> navigation.navigate("TelaQRCodeGerado")} >
                         <Text style={styles.qrcodetext} >Gerar meu QR Code</Text>
                     </TouchableOpacity>
                 </View>

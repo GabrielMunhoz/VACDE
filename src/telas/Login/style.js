@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#fff",
         alignItems: "center",
+        paddingBottom: 15
     },
     mainContent:{
         flexDirection: "column",

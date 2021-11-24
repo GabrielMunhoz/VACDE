@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 
@@ -8,8 +8,16 @@ export default function App({navigation}) {
   const [nomecompleto, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirmesenha, setConfsenha] = useState('');
+  const [confirmesenha, setConfirmesenha] = useState('');
+  const [confirmado, setConfirmado] = useState(0);
 
+  useEffect(()=>{
+    if(senha === confirmesenha){
+          setConfirmado(1);
+      }else{
+          setConfirmado(2);
+      }
+  }, [confirmesenha]);
 
   return (
     <View style={styles.container}>
@@ -24,14 +32,11 @@ export default function App({navigation}) {
       <TextInput placeholder="Nome Completo..." style={styles.textInput} onChangeText={text=>setNome(text)} />
       <TextInput placeholder="Seu e-mail..." style={styles.textInput} onChangeText={text=>setEmail(text)} />   
       <TextInput secureTextEntry={true} placeholder="Sua senha..." style={styles.textInput} onChangeText={text=>setSenha(text)} />
-      <TextInput secureTextEntry={true} placeholder="Confirme sua senha..." style={styles.textInput} onChangeText={text=>setConfsenha(text)} />
-
-      <TouchableOpacity style={styles.btnCadastro} onPress={()=> navigation.navigate("Cadastro-2parte")}>
+      <TextInput secureTextEntry={true} placeholder="Confirme sua senha..." style={styles.textInput} onChangeText={text=>setConfirmesenha(text)} />
+      {confirmado === 2 && <Text style={[styles.textCadastro, {fontSize: 13, color: "red", marginLeft: 15, marginTop: -30}]}>As senhas estão diferentes</Text> }
+      {confirmado === 1 && <TouchableOpacity style={styles.btnCadastro} onPress={()=> navigation.navigate("Cadastro-2parte")}>
         <Text style={{color:'white',textAlign:'center', fontSize:'25px'}}>Continuar</Text>
-      </TouchableOpacity>
-
-
-
+      </TouchableOpacity>}
     </View>
   );
 }
