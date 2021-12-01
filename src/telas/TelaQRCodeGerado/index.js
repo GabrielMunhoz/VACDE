@@ -11,7 +11,7 @@ function TelaQRCodeGerado({text, navigation}) {
            <View style={styles.canvas} >
                 <QRCode value="hey" size={130} />
            </View>
-           <TouchableOpacity onPress={()=> navigation.navigate("Home")} style={styles.cancelar} ><Image style={styles.close} source={require('../../../assets/img/close.jfif')} /></TouchableOpacity>
+           <TouchableOpacity onPress={()=> navigation.navigate("Home")} style={styles.cancelar} ><Image style={styles.close} source={require('../../../assets/img/close.jpeg')} /></TouchableOpacity>
            <Text style={styles.cancelarText} >Cancelar</Text>
       </View>
   );
