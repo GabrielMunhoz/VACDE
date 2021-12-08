@@ -1,10 +1,26 @@
 import React from 'react';
 import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import api from '../../Services/api';
 
 import { styles } from './style';
 
-export default function Home({navigation}){
+export default function Home({route, navigation}){
+
+    const {userId} = route.params;
+    const [nome, setNome] = React.useState("");
+    const [cpf, setCpf] = React.useState("");
+
+    React.useEffect(()=>{
+        async function userInformations(){
+            const response = await api.get(`/usuario/buscaInfoUsuario/${userId}`);
+            setNome(response.data.usuarios.nome);
+            setCpf(response.data.usuarios.cpf);
+        }
+
+        userInformations();
+    }, []);
+
     return(
         <ScrollView>
             <View style={styles.container} >
@@ -22,8 +38,8 @@ export default function Home({navigation}){
                     </View>
                 </View>
                 <View style={styles.mainContent} >
-                    <TextInput label="(1 nome) / (idade)" style={styles.btnPrimary} left={<TextInput.Icon color="gray" name="account-circle-outline" />}/>
-                    <TextInput label="(CPF do usuário)" style={styles.btnPrimary} left={<TextInput.Icon color="gray" name="newspaper-variant-multiple-outline" />}/>
+                    <TextInput label="(1 nome) / (idade)" value={nome} style={styles.btnPrimary} left={<TextInput.Icon color="gray" name="account-circle-outline" />}/>
+                    <TextInput label="(CPF do usuário)" value={cpf} style={styles.btnPrimary} left={<TextInput.Icon color="gray" name="newspaper-variant-multiple-outline" />}/>
                     <TextInput label="(Laboratório da vacina)" style={styles.btnPrimary} left={<TextInput.Icon color="gray" name="hospital-building" />}/>
                     <View style={styles.inputRow} >
                         <TextInput label="(Data 1 dose)" style={[styles.btnPrimary, styles.btnSecondary, {marginLeft: 7}]} left={<TextInput.Icon color="gray" name="bottle-tonic-plus-outline" />}/>

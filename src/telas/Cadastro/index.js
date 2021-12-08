@@ -2,14 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import {Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './style';
+import api from '../../Services/api';
 
 export default function App({navigation}) {
 
-  const [nomecompleto, setNome] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmesenha, setConfirmesenha] = useState('');
   const [confirmado, setConfirmado] = useState(0);
+
+  const cadastro = async() => {
+    await api.post("/usuario/cadastrar", {nome: nome, senha: confirmesenha});
+  }
 
   useEffect(()=>{
     if(senha === confirmesenha){
@@ -34,8 +39,8 @@ export default function App({navigation}) {
       <TextInput secureTextEntry={true} placeholder="Sua senha..." style={styles.textInput} onChangeText={text=>setSenha(text)} />
       <TextInput secureTextEntry={true} placeholder="Confirme sua senha..." style={styles.textInput} onChangeText={text=>setConfirmesenha(text)} />
       {confirmado === 2 && <Text style={[styles.textCadastro, {fontSize: 13, color: "red", marginLeft: 15, marginTop: -30}]}>As senhas estão diferentes</Text> }
-      {confirmado === 1 && <TouchableOpacity style={styles.btnCadastro} onPress={()=> navigation.navigate("Cadastro-2parte")}>
-        <Text style={{color:'white',textAlign:'center', fontSize:'25px'}}>Continuar</Text>
+      {confirmado === 1 && <TouchableOpacity style={styles.btnCadastro} onPress={cadastro}>
+        <Text style={{color:'white',textAlign:'center', fontSize:'25px'}}>Cadastrar</Text>
       </TouchableOpacity>}
     </View>
   );
