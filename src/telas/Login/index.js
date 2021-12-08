@@ -13,7 +13,7 @@ export default function App({navigation}) {
   const Login = async () =>{
 
     try{
-      const response = await api.post("/usuario/login", {nome: email, senha});
+      const response = await api.post("/usuario/login", {cpf: email, senha});
       setLogado(1);
       navigation.navigate("Home", {userId: response.data.id});
       // navigation.navigate("Home");
@@ -30,17 +30,17 @@ export default function App({navigation}) {
         <Text style={styles.title} >VaCde</Text>
       </View>
       <View style={styles.mainContent} >
-        <Text style={styles.label} >CPF/Email</Text>
+        <Text style={styles.label} >CPF</Text>
         <TextInput onChangeText={text=>setEmail(text)} multiline={true} style={styles.input} />
         <Text style={styles.label} >Senha</Text>
         <TextInput onChangeText={text=>setSenha(text)} style={styles.input} />
         {logado === 2 &&<Text style={[styles.label, {color: "red", marginTop: 10}]} >Email ou Senha incorretos.</Text>}
-        <TouchableOpacity style={styles.btnEntry} onPress={Login} >
-          <Text style={styles.btnEntryText} >Entrar</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.btnEntry} onPress={()=>navigation.navigate("Home")} >
+        {/* <TouchableOpacity style={styles.btnEntry} onPress={Login} >
           <Text style={styles.btnEntryText} >Entrar</Text>
         </TouchableOpacity> */}
+        <TouchableOpacity style={styles.btnEntry} onPress={()=>navigation.navigate("Home")} >
+          <Text style={styles.btnEntryText} >Entrar</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.whiteSpace} >
         <TouchableOpacity style={styles.btnNew} onPress={()=> navigation.navigate("Cadastro") } >

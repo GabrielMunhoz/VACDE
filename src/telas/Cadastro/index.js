@@ -4,16 +4,24 @@ import {Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import api from '../../Services/api';
 
-export default function App({navigation}) {
+export default function App({route, navigation}) {
 
+  
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [cpf, setCpf] = useState("");
   const [confirmesenha, setConfirmesenha] = useState('');
   const [confirmado, setConfirmado] = useState(0);
 
   const cadastro = async() => {
-    await api.post("/usuario/cadastrar", {nome: nome, senha: confirmesenha});
+    await api.post("/usuario/cadastrarSemDocumento", {nome: nome,cpf: cpf, senha: confirmesenha});
+    navigation.navigate("Login");
+  }
+
+  const geraQRCode = ()=> {
+    const {primeira, segunda} = route.params;
+    navigation.navigate("TelaQRCodeGerado", {primeira, segunda});
   }
 
   useEffect(()=>{
@@ -35,7 +43,7 @@ export default function App({navigation}) {
       <Text style={styles.textCadastro}>Cadastre-se</Text>
 
       <TextInput placeholder="Nome Completo..." style={styles.textInput} onChangeText={text=>setNome(text)} />
-      <TextInput placeholder="Seu e-mail..." style={styles.textInput} onChangeText={text=>setEmail(text)} />   
+      <TextInput placeholder="Seu CPF" style={styles.textInput} onChangeText={text=>setCpf(text)} />   
       <TextInput secureTextEntry={true} placeholder="Sua senha..." style={styles.textInput} onChangeText={text=>setSenha(text)} />
       <TextInput secureTextEntry={true} placeholder="Confirme sua senha..." style={styles.textInput} onChangeText={text=>setConfirmesenha(text)} />
       {confirmado === 2 && <Text style={[styles.textCadastro, {fontSize: 13, color: "red", marginLeft: 15, marginTop: -30}]}>As senhas estão diferentes</Text> }

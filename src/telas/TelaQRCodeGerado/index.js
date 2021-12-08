@@ -3,7 +3,8 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import { styles } from '../TelaQRCodeGerado/style';
 import QRCode from "react-qr-code";
 
-function TelaQRCodeGerado({text, navigation}) {
+function TelaQRCodeGerado({navigation}) {
+
 
   return (
       <View style={styles.container} >

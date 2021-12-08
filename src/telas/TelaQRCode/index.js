@@ -8,6 +8,12 @@ export default function TelaQRCode({navigation}) {
   const [inputText, setInputText] = useState('');
   const [qrValue, setQrValue] = useState('');
 
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      navigation.navigate("TelaDadosAprovados");
+    }, 3000);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View>

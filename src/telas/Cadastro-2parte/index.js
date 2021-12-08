@@ -2,9 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './style';
-import Constants from 'expo-constants';
-// import * as Permissions from 'expo-permissions';
-import * as ImagePicker from 'expo-image-picker';
+import api from '../../Services/api';
 
 export default function Cadastro_2parte({navigation}) {
 
@@ -12,34 +10,14 @@ export default function Cadastro_2parte({navigation}) {
   const [email, setCpf] = useState('');
   const [senha, setLab] = useState('');
   const [confirmesenha, setDatadose] = useState('');
+  const [primeiradose, setPrimeiradose] = useState("");
+  const [segundaDose, setSegundaDose] = useState("");
 
-  async function imagePickerCall(){
-    if(Constants.platform.ios){
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-
-      if(!status !== 'granted'){
-        alert("Nós precisamos desta permissão.");
-        return;
-      }
-    }
-
-    const data = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images
-    })
-
-    if(data.cancelled){
-      return;
-    }
-
-    if(!data.uri){
-      return;
-    }
-
-    const dataForm = new FormData();
-
-    dataForm.append("carteira", {
-      uri: data.uri
-    })
+  const infoUser = async () =>{
+    const response = await api.get(`/usuario/buscaInfoUsuario/${id}`);
+    setPrimeiradose(response.data.vacina.primeiradose);
+    setSegundaDose(response.data.vacina.segundadose);
+    navigation.navigate("Cadastro", {primeira: primeiradose, segunda: segundaDose});
   }
 
   return (
@@ -52,7 +30,7 @@ export default function Cadastro_2parte({navigation}) {
       <Text style={styles.textConectsus}>Para continuar, entre no seu ConecteSUS</Text>
       <nav>
         <Text style={styles.textBaixar}>Faça o upload de sua{"\n"}Carteira de Vacinação Digital</Text>        
-        <TouchableOpacity style={styles.btnBaixar} onPress={imagePickerCall}>
+        <TouchableOpacity style={styles.btnBaixar} onPress={infoUser}>
           <Image style={{width:50,height:50}} source={require('../../../assets/img/botaobaixar.jpg')} />
         </TouchableOpacity>
       </nav>
